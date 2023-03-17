@@ -16,7 +16,6 @@ public class Program {
 
         try {
             System.out.println("Enter account data");
-
             System.out.print("Number :");
             int number = Integer.parseInt(in.readLine());
             System.out.print("Holder: ");
@@ -39,6 +38,7 @@ public class Program {
         catch (RuntimeException e){
             System.out.println("Unexpected error!");
         }
+        
 
 
     }

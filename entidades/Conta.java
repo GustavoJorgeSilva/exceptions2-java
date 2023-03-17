@@ -54,9 +54,13 @@ public class Conta {
     }
 
     public void withdraw(Double value) {
-        if (withDrawLimit < value || balance <= 0) {
-            throw new DomainException("The withdraw limit is lower than requested");
-        } else {
+        if (withDrawLimit < value ) {
+            throw new DomainException("Withdraw error: The withdraw limit is lower than requested");
+        }
+        if(balance - value < 0){
+            throw new DomainException("Withdraw error: Not enough balance");
+        }
+        else {
             balance -= value;
         }
     }
