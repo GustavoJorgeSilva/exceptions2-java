@@ -16,7 +16,7 @@ public class Conta {
 
     public Conta(Integer accountNumber, String accountHolder, Double balance, Double withDrawLimit) {
 
-        if(balance < 0){
+        if (balance < 0) {
             throw new DomainException("Error! the balance cannot be less than 0");
         }
         this.accountNumber = accountNumber;
@@ -54,21 +54,24 @@ public class Conta {
     }
 
     public void withdraw(Double value) {
-        if (withDrawLimit < value ) {
+        validateWithdraw(value);
+        balance -= value;
+
+    }
+
+    private void validateWithdraw(double value){
+        if (value > withDrawLimit) {
             throw new DomainException("Withdraw error: The withdraw limit is lower than requested");
         }
-        if(balance - value < 0){
+        if(value > balance){
             throw new DomainException("Withdraw error: Not enough balance");
-        }
-        else {
-            balance -= value;
         }
     }
 
     @Override
     public String toString() {
         return "New balance: " +
-                 String.format("%.2f ",balance)
+                String.format("%.2f ", balance)
                 ;
     }
 }
